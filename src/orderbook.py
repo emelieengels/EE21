@@ -157,12 +157,13 @@ class Orderbook(object):
 
 
 if __name__ == '__main__':
-    parser = optparse.OptionParser("usage: %prog [options] arg1 arg2") #example of how to use optparse
+    parser = optparse.OptionParser("usage: %prog [options] arg1") #example of how to use optparse
     parser.add_option("-o", "--ordercount", dest="ordercountnumber", default = None, type = "string", help = "specify ordercount")
-    (options, args) = parser.parse_args()
-    if len(args) != 1:
-        parser.error("incorrect number of arguments")
-    ordercountnumber = options.ordercountnumber
+    options, _ = parser.parse_args()
+    print(len(_))
+    #if len(args) != 1:
+        #parser.error("incorrect number of arguments")
+    #ordercountnumber = options.ordercountnumber
 
 
     orderbook = Orderbook()
