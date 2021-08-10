@@ -1,5 +1,13 @@
 from datetime import datetime
 import random
+import optparse
+import logging
+
+# option parser wird benutzt wenn orderbook.py von der terminal zeile aus aufgerufen wird, und bestimmte optionen hier in optparse definiert wurden
+#program options
+#add option eingeben, instrument name, action = store, dest, help
+#adde logging für dieses file
+#wenn ich zeit hab: pandas mit python benutzen
 # hallo
 
 def timestamp():
@@ -149,6 +157,13 @@ class Orderbook(object):
 
 
 if __name__ == '__main__':
+    parser = optparse.OptionParser("usage: %prog [options] arg1 arg2") #example of how to use optparse
+    parser.add_option("-o", "--ordercount", dest="ordercountnumber", default = None, type = "string", help = "specify ordercount")
+    (options, args) = parser.parse_args()
+    if len(args) != 1:
+        parser.error("incorrect number of arguments")
+    ordercountnumber = options.ordercountnumber
+
 
     orderbook = Orderbook()
 
@@ -199,9 +214,9 @@ if __name__ == '__main__':
         print(orderbook)
 
 
-        orderbook.DelOrder(order8)
-        orderbook.DelOrder(order1)
-        orderbook.DelOrder(order10)
-        print(orderbook)
+        #orderbook.DelOrder(order8)
+        #orderbook.DelOrder(order1)
+        #orderbook.DelOrder(order10)
+        #print(orderbook)
     except Exception as info:
         raise
