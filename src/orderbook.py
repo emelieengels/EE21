@@ -10,6 +10,8 @@ import logging
 #wenn ich zeit hab: pandas mit python benutzen
 # hallo
 
+#!/usr/bin/python3 -u
+
 def timestamp():
     return datetime.now()
 
@@ -157,13 +159,15 @@ class Orderbook(object):
 
 
 if __name__ == '__main__':
-    parser = optparse.OptionParser("usage: %prog [options] arg1") #example of how to use optparse
-    parser.add_option("-o", "--ordercount", dest="ordercountnumber", default = None, type = "string", help = "specify ordercount")
-    options, _ = parser.parse_args()
-    print(len(_))
-    #if len(args) != 1:
-        #parser.error("incorrect number of arguments")
-    #ordercountnumber = options.ordercountnumber
+    parser = optparse.OptionParser("usage: %prog [options] marke zdr farbe") #example of how to use optparse
+    parser.add_option("-o", "--ordercount", dest="ordercountnumber", default = 0, type = "int", help = "specify ordercount")
+    options, args = parser.parse_args()
+    #options.ordercountnumber = None
+    print('options:', options)
+    print('args:', args)
+    if len(args) != 3:
+        parser.error("incorrect number of arguments")
+    print(options.ordercountnumber)
 
 
     orderbook = Orderbook()
