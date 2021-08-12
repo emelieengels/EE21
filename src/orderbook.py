@@ -43,7 +43,6 @@ class Pricelevel(object):
         if order.Timestamp in self.Orders:
             raise Exception("order exist already with timestamp %s" % str(order.Timestamp))
         self.Orders[order.Timestamp] = order
-        # self.Orders = sorted(self.Orders)
 
     def DelOrder(self, order):
         if order.Timestamp not in self.Orders:
@@ -71,12 +70,13 @@ class OrderbookSide(object):
             txt += str(self.Pricelevels[pricelevel])
         return txt
 
-    def AddOrder(self, order):
+    def AddOrder(self, order): #ob preis auf oder absteigt liegt hier drin!
         if order.Price not in self.Pricelevels:
             priceLevel = Pricelevel(order.Price)
             self.Pricelevels[order.Price] = priceLevel
             temp = {}
-            priceLevels = sorted(self.Pricelevels.keys(), reverse=True)
+            priceLevels = sorted(self.Pricelevels.keys(), reverse=True) #buyside high to low
+            #priceLevels = sorted(self.Pricelevels.keys()) #sellside low to high
             for pl in priceLevels:
                 temp[pl] = self.Pricelevels[pl]
             self.Pricelevels = temp
@@ -87,11 +87,11 @@ class OrderbookSide(object):
 
     def DelOrder(self, order):
         if order.Price in self.Pricelevels:
-            priceLevel = self.Pricelevels[order.Price]
-            priceLevel.DelOrder(order)
+            priceLevel = self.Pricelevels[order.Price] #and then delete pricelevel as order gets deleted
         else:
             raise Exception('Price level does not exist : %s' % str(order.Price))
             #priceLevel = self.Pricelevels[order.Price]
+        priceLevel.DelOrder(order)
 
     def DelPricelevel(self, order):
         if order.Price not in self.Pricelevels:
@@ -107,8 +107,8 @@ class Orderbook(object):
 
     def __init__(self):
         self.BuySide = OrderbookSide('B')
-        #self.BuySide = sorted(self.BuySide.Pricelevels.keys(), reverse=True)
         self.SellSide = OrderbookSide('S')
+        #self.SellSide = sorted(self.SellSide.Pricelevels.keys(), reverse=True)
 
     def __str__(self):
         txt = '\n\n>>>>>>>>>>Orderbook\n'
@@ -120,9 +120,9 @@ class Orderbook(object):
 
     def AddOrder(self, order):
         if order.Side == 'B':
-            #sorted(self.BuySide, reverse=True)
             self.BuySide.AddOrder(order)
         elif order.Side == 'S':
+            #sorted(self.SellSide, reverse=True)
             self.SellSide.AddOrder(order)
         else:
             raise Exception("illegal Side: %s" % order.Side)
@@ -184,7 +184,7 @@ if __name__ == '__main__':
         orderbook.AddOrder(order5)
         orderbook.AddOrder(order6)
         orderbook.DelOrder(order2)
-        #print(orderbook)
+        print(orderbook)
 
         #orderbook.DelOrder(order1)
         #print(orderbook)
