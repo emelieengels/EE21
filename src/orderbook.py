@@ -3,14 +3,12 @@ import random
 import optparse
 import logging
 
-# option parser wird benutzt wenn orderbook.py von der terminal zeile aus aufgerufen wird, und bestimmte optionen hier in optparse definiert wurden
-#program options
-#add option eingeben, instrument name, action = store, dest, help
-#adde logging für dieses file
-#wenn ich zeit hab: pandas mit python benutzen
-# hallo
-
-#!/usr/bin/python3 -u
+logging.basicConfig(filename="logfilename.log")#, level=logging.DEBUG)
+logging.debug('This is a debug message')
+logging.info('This is an info message')
+logging.warning('This is a warning message')
+logging.error('This is an error message')
+logging.critical('This is a critical message')
 
 def timestamp():
     return datetime.now()
@@ -165,63 +163,30 @@ if __name__ == '__main__':
     #options.ordercountnumber = None
     print('options:', options)
     print('args:', args)
-    if len(args) != 3:
-        parser.error("incorrect number of arguments")
+    #if len(args) != 3:
+        #parser.error("incorrect number of arguments")
     print(options.ordercountnumber)
-
 
     orderbook = Orderbook()
 
-    #order1 = Order('S', 10, 120, timestamp())
-    #order2 = Order('B', 9, 121, timestamp())
-    #order3 = Order('B', 8, 122, timestamp())
-    #order4 = Order('S', 7, 123, timestamp())
-    #order5 = Order('B', 6, 124, timestamp())
-    #order6 = Order('S', 5, 125, timestamp())
-    #order7 = Order('S', 4, 126, timestamp())
-    #order8 = Order('S', 3, 120, timestamp())
-    #order9 = Order('B', 2, 121, timestamp())
-    #order10 = Order('S', 1, 120, timestamp())
-    #order11 = Order('S', 1, 120, timestamp())
-
-    #for i in range(5):
-        #value1 = Order(random.choice('BS'), random.randint(1, 10), random.randint(115, 130) , timestamp())
-        #print(value1)
-
-
-    order1 = Order(random.choice('BS'), random.randint(1, 10), random.randint(115, 130) , timestamp())
-    order2 = Order(random.choice('BS'), random.randint(1, 10), random.randint(115, 130), timestamp())
-    order3 = Order(random.choice('BS'), random.randint(1, 10), random.randint(115, 130), timestamp())
-    order4 = Order(random.choice('BS'), random.randint(1, 10), random.randint(115, 130), timestamp())
-    order5 = Order(random.choice('BS'), random.randint(1, 10), random.randint(115, 130), timestamp())
-    order6 = Order(random.choice('BS'), random.randint(1, 10), random.randint(115, 130), timestamp())
-    order7 = Order(random.choice('BS'), random.randint(1, 10), random.randint(115, 130), timestamp())
-    order8 = Order(random.choice('BS'), random.randint(1, 10), random.randint(115, 130), timestamp())
-    order9 = Order(random.choice('BS'), random.randint(1, 10), random.randint(115, 130), timestamp())
-    order10 = Order(random.choice('BS'), random.randint(1, 10), random.randint(115, 130), timestamp())
-
     try:
-        #orderbook.AddOrder(value)
+        order1 = createOrder()
+        order2 = createOrder()
+        print(order2)
+        order3 = createOrder()
+        order4 = createOrder()
+        order5 = createOrder()
+        order6 = createOrder()
+        orderbook.AddOrder(order1)
+        orderbook.AddOrder(order2)
+        orderbook.AddOrder(order3)
+        orderbook.AddOrder(order4)
+        orderbook.AddOrder(order5)
+        orderbook.AddOrder(order6)
+        orderbook.DelOrder(order2)
         #print(orderbook)
 
-        #orderbook.AddOrder(order9)
-        #orderbook.AddOrder(order7)
-        #orderbook.AddOrder(order1)
-        #orderbook.AddOrder(order2)
-        #orderbook.AddOrder(order3)
-        #orderbook.AddOrder(order4)
-        #orderbook.AddOrder(order5)
-        order121 = createOrder()
-        #orderbook.AddOrder(order6)
-        #orderbook.AddOrder(order8)
-        #orderbook.AddOrder(order10)
-        orderbook.AddOrder(order121)
-        print(orderbook)
-
-
-        #orderbook.DelOrder(order8)
         #orderbook.DelOrder(order1)
-        #orderbook.DelOrder(order10)
         #print(orderbook)
     except Exception as info:
         raise
