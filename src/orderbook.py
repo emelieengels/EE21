@@ -111,8 +111,6 @@ class OrderbookSide(object):
             logging.error('This pl does not exist')
         priceLevel.DelOrder(order)
         logging.info('Order has been deleted')
-        #print(priceLevel.IsEmpty())
-        #print(priceLevel.GetNumberOrder())
 
 
 class Orderbook(object):
