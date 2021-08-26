@@ -1,0 +1,138 @@
+== My summer placement at the Deutsche Börse Group
+by Emelie Engels
+
+
+=== Week One
+In my first week at the Deutsche Börse Group I had a bit of an introduction week and getting used to the worklife. I had lectures with my colleagues to learn the different key words that I would need to work at this company and things I would need to know in order to fit into this environment. In the first week I also had MS Teams calls every day to give me little tasks throughout the day, and started working from home on my second day, as this was the norm at this point of time due to coronavirus. I had an introduction to the T7 GUI in the development environment. On my firm notebook we installed programs that I would need to use in my time at the Deutsche Börse, inlcuding a T7 Java programme. With the help of my colleague Matthias we opened a few orderbooks, orderbook controls and order windows on this trader GUI to help me understand how an orderbook works, if i put different numbers in different places of the incoming order.
+All of these GUI's were ran on a GTS environment number 56 with the name 'EE T7 back end'. After becoming a bit more familiar with the FDAX variant of it, which is the Future on the DAX. (A future is a derivative financial contract that obligate the parties to transact an asset at a predetermined future date and price.) After concentrating on the FDAX I also started to experiment with the ODAX, which is the option on the DAX. An option is a contract giving the buyer the right, but not the obligation, to buy (in case of a call) or sell (in case of a put) the underlying asset at a specific price on or before a certain date. Options are mainly used for income, to speculate, and to hedge risk.
+Alongside of this i continued to read an internal file from the DBG, the functional reference guide to help me through understanding domain matching.
+
+=== Week Two
+At the start of my second week at the placement I was introduced to the trading surveillance part of the company, where a close watch on every trade that is happening is being kept, and any errors are being fixed immediately.
+After this meeting, I installed some useful packages on my private notebook, which is called PyCharm, and started two Python-files, order.py and orderbook.py, which is going to be my 'playground' learning object orientated programming and trying out some new things.
+On top of installing PyCharm I opimised it by installing seperate plug-ins (asciidoc) and did research on mark-up language. Mark-up language uses tags to define elements in a specific document. It is human-readable and instead of programming syntax mark up files are made of normal words. The usual mark-up languages are called HTML, XML; but we use asciidoc.
+After learning about asciidoc i added multiple orders to my order.py file, and added a timestamp to each order, to track which came first and last. I did some more python vocabulary research on tuples, lists, dictionaries (key, value) and integers.
+I continued to create ten dictionaries with 10 orders and tried to collect them all with the .append method in python.
+I started an online python learning course suggested to me and made notes which can be used for later use.
+I learned about the difference between Derivative and Cash markets with examples of security/instrument, market segment/products, market and market place in another lecture.
+
+=== Week Three
+In this week i started off with continuing the python online course and fixed my .append function in my PyCharm order.py programme. I managed to collect all ten functions in one orderbook with this function and changed the time stamp to make it more individual for every single order being produced.
+I informed myself about digital stock exchange dealings, where i found out that Xetra is a digital trading system and reference market for german shares. T7 is also a digital trading system and a software thats a home-product of the Deutsche Börse AG.
+Furthermore, in another lecture, I learned about the OOP (object orientated programming) using UML (unified modeling language).
+With this knowledge I modified my programme orderbook.py and managed to print a list of every order thats been added to this orderbook, with respective quantity, price and timestamp.
+
+=== Week Four
+In this week I focused on creating loops for orderbook.py to make the code quicker and have less writing to do. On this I watched some online lectures to get help, but the loops are not quite working yet, so I will have to go over them again.
+Furthermore, I created an order and orderbook flowchart with all the different components that are included in each category of the chart.
+I did research on UML and wrote definitions and help on my notepad. I started using generators to understand UML using mermaid, and added some simple diagram into the asciidoc file with the proper directory for this.
+
+=== Week Five
+Beginning my fifth week at the deutsche Börse Group i did more research, including on use case diagrams. Use case diagrams are usually referred to as behaviour diagrams used to describe a set of actions (use cases) that some system or systems (subject) should or can perform in collaboration with one or more external users of the system (actors). Mermaid is an online based editor which lets you create diagrams and visualizations using text and code. It is a Javascript based diagramming and charting tool that renders Markdown-inspired text definitions to create and modify diagrams dynamically.
+Transaction flow in the unified modelling language (UML) is also a type of diagram that demonstrate the flow of a szenario.
+I also worked on what an orderbook key would need to contain and how such would be constructed.
+
+=== Week Six
+This week mainly consisted of trying to work in PyCharm on my orderbook code and trying out a few different methods and attributes. I opened a new python program to write it out neater as what I had previously done and start the proper work for this orderbook. I added a buy or a sell side to each of my orders, and researched the best method to do so. I finally agreed to start off with one of the simpler ones, added a side of order to my code and just used the abbreviations 'B' and 'S' for buy and sell side. I transformed the orderbook plan I had done with pen and paper onto a use case diagram which I edited with the mermaid editor, I will at the end of this week attach my diagram.
+I also visited marked supervision in this week and learnt a lot about what that department does and their responsibilities. I was in cash derivatives market supervision, which is a fairly small department. They explained to me that they cancel and reverse trades when they have passed a certain limit of matching prices. After this they also explained how those matching prices are made and how difficult it is to understand how these happen. They took me through the process of cancelling a trade, and showed me how much customer service they also have to do. Every customer that has a problem with their trade gives them a call to sort it out.
+[mermaid, "currentFlow", svg]
+
+MERMAID DIAGRAM:
+
+:mermaid: /usr/local/bin/mmdc
+[mermaid, communications, png, css="mermaid.css"]
+....
+classDiagram
+    Exchange <|-- Orderbook
+    TradeManager <|-- Orderbook
+    Orderbook <|-- Order
+    Order <|-- User
+    Order <|-- Instrument
+
+    class Exchange {
+        +String name
+        +Instrument list()
+        +Orderbook list()
+
+        __init__( name )
+
+        +Main()
+    }
+
+    class Order{
+        +Int price
+        +Int timestamp
+        +Int count
+        +Int order ID
+        __init__()
+
+    }
+
+    class Orderbook {
+        +Instrument instrument
+        +buyOrders dict()
+        +sellOrders dict()
+         timestamp
+        +Int count
+        __init__()
+
+    }
+
+    class User {
+        +String name
+        +buyOrders dict()
+        +sellOrders dict()
+        +Int count
+        __init__( name )
+        +sendOrder( Order )
+        +deleteOrder( )
+
+
+    }
+
+    class Instrument {
+       +Instrument ID
+       +Instrument info
+
+    }
+
+    class Orderbook {
+        +Instrument instrument
+        +buyOrders dict()
+        +sellOrders dict()
+        +timestamp
+        +Int count
+        __init__()
+
+    }
+    class TradeManager{
+        +orders list()
+        +Int price
+        +Int quantity
+        +Users list()
+
+        +Int count
+        __init__( orders, user, price, qty )
+        +toString()
+
+    }
+....
+
+
+=== Week Seven
+Following from last week I edited my use case diagram more and expanded it with a lot more detail. More research on python methods, especially the sort method was done. I am now at a point where I need to start thinking about how and where I am going to sort my different orders in my orderbook and how to code and print this. I am still not quite there but after more research this should be achieved aswell.
+The delete Order method DelOrder was successfully added, and I am now able to delete single orders from the orderbook as easily as they have been added. More classes in my orderbook were defined, which I now have to find more about to expand them and make them more accurate to my specific orderbook. The update/ modify order, UpdateOrder, was also added to my .py code, but has not been properly activated in order for it to be used. This is to be done in the future aswell.
+
+=== Week Eight
+This week I was focussing on improving the already existing code for orderbook.py. After having added a delete order method, some Pricelevels have been left empty in the updated orderbook and now these empty pricelevels also need to be deleted out of the orderbook. This required new definitions for DelPricelevel in each class. The orders that are being added and deleted from the orderbook were previously hand-written by me, and I have changed this to random generators. These generators will create random orders with given ranges by me, so the difference in those will not be too large. I was able to create a loop to create a fixed number of random orders successfully, but have not been able to add those orders that I created to the orderbook in one batch. This probably requires a change to the AddOrder definitions.
+
+=== Week Nine
+In week nine I focussed on producing orders using the random function, and be able to add these to my orderbook. I was able to do this using a CreateOrder definition. I was also able to add in a function called option parser into the main bit of the python code, to find out how many arguments and orders are in the orderbook, called viw the terminal only, not in PyCharm itself. This program is called optparse. I was also able to add a logging file onto my code to log and find any problems or errors that could be inside my code and causing it to not work.
+
+=== Week Ten
+This week I was able to delete price levels after all orders in one price level have been deleted, and the price level was empty. I did this using a getnumberorders function to tell me how many orders are in one price level, and if there were not any orders in one price level it got deleted.
+Furthermore, I will be working on improving the log file and maximising the accuracy of messages given if there is a mistake, and explaining what happened at what stage.
+
+=== Week Eleven
+This week is my last week before I return to my university studies in England, I have enjoyed this opportunity very much and cannot believe how many things I learned and skills I gained. Every member of the team has been very welcoming and open to help me with any struggles I faced. On my code I improved the log file and improved the statements returned from the code into the file.
+
